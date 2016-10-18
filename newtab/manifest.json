@@ -7,5 +7,9 @@
     "chrome_url_overrides": {
         "newtab": "newtab.html"
     },
-    "permissions": ["https://api.tumblr.com/v2/*"]
+    "permissions": [
+        "http://api.tumblr.com/v2/*",
+        "https://api.tumblr.com/v2/*",
+        "http://www.mocky.io/v2/"
+    ]
 }
