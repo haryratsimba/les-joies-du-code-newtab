@@ -51,11 +51,7 @@
     /**
      * @param {Object} the content view data to append.
      */
-    function loadContentPost({
-        title,
-        content,
-        url
-    }) {
+    function loadContentPost({title, content, url}) {
         document.querySelector('.new-tab-title').innerHTML = title;
         document.querySelector('.new-tab-gif').innerHTML = content;
         document.querySelector('#new-tab-url').href = url;

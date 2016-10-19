@@ -34,13 +34,17 @@ var PostsHTTPHandler = function () {
                     // Catch HTTP and object parsing error (Tumblr API responses may change)
                     try {
                         if (this.status < 200 && this.status > 300) {
-                            throw new Error('[HTTP] ' + this.status + '  : ' + xhr.statusText);
+                            throw new Error('[HTTP] La requete HTTP a renvoy\xE9e les informations suviantes : code=' + this.status + ', status=' + xhr.statusText);
                         }
                         var content = JSON.parse(xhr.response);
 
                         // Send the posts count through resolve
                         resolve(content.response.blog.total_posts || content.response.blog.posts);
                     } catch (e) {
+                        if (e instanceof TypeError) {
+                            // Add additionnal informations
+                            e.message = '[API] Un probl\xE8me est survenu lors du parsing des donnes renvoy\xE9e par l\'API : ' + e.message;
+                        }
                         reject(e);
                     }
                 };
@@ -75,21 +79,22 @@ var PostsHTTPHandler = function () {
                     // Catch HTTP and object parsing error (Tumblr API responses may change)
                     try {
                         if (this.status < 200 && this.status > 300) {
-                            throw new Error('[HTTP] ' + this.status + '  : ' + xhr.statusText);
+                            throw new Error('[HTTP] La requete HTTP a renvoy\xE9e les informations suviantes : code=' + this.status + ', status=' + xhr.statusText);
                         }
                         var content = JSON.parse(xhr.response);
 
                         // Send the posts count through resolve
                         var post = content.response.posts[0];
-
-                        // throw new Error('test');
-
                         resolve({
                             title: post.title,
                             content: post.body,
                             url: post.post_url
                         });
                     } catch (e) {
+                        if (e instanceof TypeError) {
+                            // Add additionnal informations
+                            e.message = '[API] Un probl\xE8me est survenu lors du parsing des donnes renvoy\xE9e par l\'API : ' + e.message;
+                        }
                         reject(e);
                     }
                 };
