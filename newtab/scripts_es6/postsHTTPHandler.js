@@ -22,11 +22,7 @@ const PostsHTTPHandler = (function() {
             return new Promise((resolve, reject) => {
                 var xhr = new XMLHttpRequest();
 
-                // TODO : Uncomment this line
-                // xhr.open('GET', `${BASE_URL}/info?api_key=${API_KEY}`);
-
-                // TODO : Replace the mock. Mocky is used to generate a mock response
-                xhr.open('GET', `http://www.mocky.io/v2/5805ee6f1000008b00f185a2`);
+                xhr.open('GET', `${BASE_URL}/info?api_key=${API_KEY}`);
 
                 xhr.onload = function() {
                     // Catch HTTP and object parsing error (Tumblr API responses may change)
@@ -66,11 +62,7 @@ const PostsHTTPHandler = (function() {
             return new Promise((resolve, reject) => {
                 var xhr = new XMLHttpRequest();
 
-                // TODO : Uncomment this line
-                // xhr.open('GET', `${BASE_URL}/posts?api_key=${API_KEY}&offset=${randomPostOffset}&limit=1`);
-
-                // TODO : Replace the mock. Mocky is used to generate a mock response
-                xhr.open('GET', `http://www.mocky.io/v2/5804e41c130000d4096ab6dd`);
+                xhr.open('GET', `${BASE_URL}/posts?api_key=${API_KEY}&offset=${randomPostOffset}&limit=1`);
 
                 xhr.onload = function() {
                     // Catch HTTP and object parsing error (Tumblr API responses may change)
