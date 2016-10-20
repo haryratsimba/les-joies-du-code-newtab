@@ -27,8 +27,7 @@ a:visited {
     text-align: center;
     width: 500px;
     margin: 0 auto;
-    /* Use footer height as padding-bottom */
-    padding: 10px 0px 50px 0px;
+    padding: 10px 0px 80px 0px;
 }
 .new-tab-gif {
     margin-bottom: 50px;
