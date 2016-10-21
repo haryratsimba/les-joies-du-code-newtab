@@ -25,17 +25,44 @@
     }
 
     /**
-     * @param {Object} the content view data to append.
+     * @param {Object} the content view data.
      */
     function onFetchSuccess(post) {
         loadContentPost(post);
 
-        // Display the original post link
-        document.querySelector('#new-tab-url').style.display = 'inline';
+        // Display buttons actions
+        document.querySelector('.new-tab-actions').style.display = 'inline';
+
+        // Enable copy to clipboard option
+        document.querySelector('#new-tab-clipboard').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let el = this;
+
+            try {
+                let clipboardInput = document.createElement('input');
+                document.body.appendChild(clipboardInput);
+
+                clipboardInput.value = post.url;
+                clipboardInput.focus();
+                clipboardInput.select();
+
+                document.execCommand('Copy');
+                clipboardInput.remove();
+
+                // Color link for UX
+                el.style.backgroundColor = '#2ecc71';
+            } catch (e) {
+                alert(`La copie par presse-papier n'est pas supportée dans votre navigateur !`);
+
+                // Color link for UX
+                el.style.backgroundColor = '#e74c3c';
+            }
+        });
     }
 
     /**
-     * @param {Object} the content view data to append.
+     * @param {Object} the content view data.
      */
     function onFetchError(error) {
         console.warn(error);
@@ -49,7 +76,7 @@
     }
 
     /**
-     * @param {Object} the content view data to append.
+     * @param {Object} the content view data.
      */
     function loadContentPost({title, content, url}) {
         document.querySelector('.new-tab-title').innerHTML = title;
